@@ -30,8 +30,22 @@ The place has NOT been published; save it with File → Save to File.
   "[V] First person / Third person" bottom-left. Door/seat clicking only works in first
   person (uses the centre dot). Change key with `CAMERA_KEY` in `VanClient`.
 
+## Roads + GPS (written in a cloud session, code in `roblox/`)
+
+- Cloud sessions can't control Roblox Studio, so the scripts live in `roblox/` and the user
+  pastes them into Studio. See `roblox/README.md` for where each script goes.
+- `RoadNetwork` (shared module): 6×6 street grid (±300/±900/±1500), Ring Rd, diagonal
+  Harbor Blvd, 2 closed segments, speed limits, Dijkstra routing, turn instructions,
+  progress tracking, ETA. Tested in plain Luau with a Vector3 shim.
+- `RoadBuilder`: builds asphalt, junction pads, markings, a ring barrier and grass ground at
+  runtime.
+- `GpsScreenSetup`: welds a `GPSScreen` part to each vehicle's VehicleSeat (offset is a guess
+  and may need tuning).
+- `GpsClient` + `GpsUI`: Waze-style nav on the dashboard SurfaceGui, a HUD copy in third
+  person, and the M big map where you click to set a destination.
+- These have NOT been playtested in Studio yet. Ask the user how it looks.
+
 ## Known issues / next steps
 
-- Map is only a flat baseplate; driving long enough goes off the edge and falls out of the
-  world. Next big step: build the map (roads, depot, delivery houses).
 - Package system not built yet (the shelf markers are placeholders for it).
+- Next ideas: depot + delivery houses as GPS destinations, money, upgrades shop.
